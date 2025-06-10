@@ -1,0 +1,1447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".home">
+
+    <LinearLayout
+        android:id="@+id/topAppBar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/menuIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="Menu"
+            android:src="@drawable/ic_menu" />
+
+        <LinearLayout
+            android:id="@+id/titleContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:contentDescription="UOC Logo"
+                android:src="@drawable/ic_uoc_logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="UOC"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/searchBarContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/searchEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:hint="Search news..."
+                android:inputType="text"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/closeSearchIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="Close Search"
+                android:src="@drawable/ic_close"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/searchIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="Search"
+            android:src="@drawable/ic_search" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="380dp"
+        android:layout_height="38dp"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topAppBar">
+
+        <TextView
+            android:id="@+id/tabPopular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Popular"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tabAcademic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Academic"
+            android:textColor="#888888"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tabSport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Sport"
+            android:textColor="#888888"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tabEvents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Events"
+            android:textColor="#888888"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:id="@+id/tabContentContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/popularContentSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+                    <HorizontalScrollView
+                        android:id="@+id/popularScrollView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="300dp"
+                                android:layout_height="200dp"
+                                app:cardCornerRadius="12dp"
+                                app:cardElevation="4dp"
+                                android:layout_marginEnd="16dp">
+                                <ImageView
+                                    android:id="@+id/carouselImageView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/carousel_image_1"
+                                    android:contentDescription="Popular Carousel Image 1"
+                                    android:tag="@drawable/carousel_image_1" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:orientation="vertical"
+                                    android:padding="16dp"
+                                    android:background="#80000000">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Popular"
+                                        android:textColor="#ffffff"
+                                        android:textSize="12sp"
+                                        android:background="#FF0000"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:layout_marginBottom="4dp"/>
+                                    <TextView
+                                        android:id="@+id/carouselTitleTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily=""
+                                        android:text="Anniversary Celebration and Presidential Induction College of Pathologists of Sri Lanka"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"
+                                        android:maxLines="2"
+                                        android:ellipsize="end" />
+                                    <TextView
+                                        android:id="@+id/popularReadMore1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Read it more.."
+                                        android:textColor="#ffffff"
+                                        android:textSize="14sp"
+                                        android:layout_marginTop="8dp"
+                                        android:clickable="true"
+                                        android:focusable="true" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="300dp"
+                                android:layout_height="200dp"
+                                app:cardCornerRadius="12dp"
+                                app:cardElevation="4dp"
+                                android:layout_marginEnd="16dp">
+                                <ImageView
+                                    android:id="@+id/carouselImageView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/carousel_image_2"
+                                    android:contentDescription="Popular Carousel Image 2"
+                                    android:tag="@drawable/carousel_image_2" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:orientation="vertical"
+                                    android:padding="16dp"
+                                    android:background="#80000000">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Popular"
+                                        android:textColor="#ffffff"
+                                        android:textSize="12sp"
+                                        android:background="#FF0000"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:layout_marginBottom="4dp"/>
+                                    <TextView
+                                        android:id="@+id/carouselTitleTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily=""
+                                        android:text="General Convocation 2024 By University of Colombo University of Colombo "
+                                        android:textColor="#ffffff"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"
+                                        android:maxLines="2"
+                                        android:ellipsize="end" />
+                                    <TextView
+                                        android:id="@+id/popularReadMore2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Read it more.."
+                                        android:textColor="#ffffff"
+                                        android:textSize="14sp"
+                                        android:layout_marginTop="8dp"
+                                        android:clickable="true"
+                                        android:focusable="true" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="300dp"
+                                android:layout_height="200dp"
+                                app:cardCornerRadius="12dp"
+                                app:cardElevation="4dp"
+                                android:layout_marginEnd="16dp">
+                                <ImageView
+                                    android:id="@+id/carouselImageView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/carousel_image_3"
+                                    android:contentDescription="Popular Carousel Image 3"
+                                    android:tag="@drawable/carousel_image_3" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:orientation="vertical"
+                                    android:padding="16dp"
+                                    android:background="#80000000">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Popular"
+                                        android:textColor="#ffffff"
+                                        android:textSize="12sp"
+                                        android:background="#FF0000"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:layout_marginBottom="4dp"/>
+                                    <TextView
+                                        android:id="@+id/carouselTitleTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily=""
+                                        android:text="Professor Priyani Amarathunga Inducted as the President of the College of Pathologists of Sri Lanka"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"
+                                        android:maxLines="2"
+                                        android:ellipsize="end" />
+                                    <TextView
+                                        android:id="@+id/popularReadMore3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Read it more.."
+                                        android:textColor="#ffffff"
+                                        android:textSize="14sp"
+                                        android:layout_marginTop="8dp"
+                                        android:clickable="true"
+                                        android:focusable="true" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                        </LinearLayout>
+                    </HorizontalScrollView>
+                    <LinearLayout
+                        android:id="@+id/popularDotsLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="16dp">
+                        <View
+                            android:id="@+id/popular_dot1"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="@drawable/dot_active"
+                            android:layout_marginEnd="4dp" />
+                        <View
+                            android:id="@+id/popular_dot2"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="@drawable/dot_inactive"
+                            android:layout_marginEnd="4dp" />
+                        <View
+                            android:id="@+id/popular_dot3"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="@drawable/dot_inactive" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/academicContentSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+                    <HorizontalScrollView
+                        android:id="@+id/academicScrollView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="300dp"
+                                android:layout_height="200dp"
+                                app:cardCornerRadius="12dp"
+                                app:cardElevation="4dp"
+                                android:layout_marginEnd="16dp">
+                                <ImageView
+                                    android:id="@+id/carouselImageView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/academic_image_1"
+                                    android:contentDescription="Academic Carousel Image 1"
+                                    android:tag="@drawable/academic_image_1" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:orientation="vertical"
+                                    android:padding="16dp"
+                                    android:background="#80000000">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Academic"
+                                        android:textColor="#ffffff"
+                                        android:textSize="12sp"
+                                        android:background="#00AA00"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:layout_marginBottom="4dp"/>
+                                    <TextView
+                                        android:id="@+id/carouselTitleTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="New Research Publication"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"
+                                        android:maxLines="2"
+                                        android:ellipsize="end" />
+                                    <TextView
+                                        android:id="@+id/academicReadMore1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Read it more.."
+                                        android:textColor="#ffffff"
+                                        android:textSize="14sp"
+                                        android:layout_marginTop="8dp"
+                                        android:clickable="true"
+                                        android:focusable="true" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="300dp"
+                                android:layout_height="200dp"
+                                app:cardCornerRadius="12dp"
+                                app:cardElevation="4dp"
+                                android:layout_marginEnd="16dp">
+                                <ImageView
+                                    android:id="@+id/carouselImageView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/academic_image_2"
+                                    android:contentDescription="Academic Carousel Image 2"
+                                    android:tag="@drawable/academic_image_2" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:orientation="vertical"
+                                    android:padding="16dp"
+                                    android:background="#80000000">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Academic"
+                                        android:textColor="#ffffff"
+                                        android:textSize="12sp"
+                                        android:background="#00AA00"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:layout_marginBottom="4dp"/>
+                                    <TextView
+                                        android:id="@+id/carouselTitleTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Upcoming Workshop Details"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"
+                                        android:maxLines="2"
+                                        android:ellipsize="end" />
+                                    <TextView
+                                        android:id="@+id/academicReadMore2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Read it more.."
+                                        android:textColor="#ffffff"
+                                        android:textSize="14sp"
+                                        android:layout_marginTop="8dp"
+                                        android:clickable="true"
+                                        android:focusable="true" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="300dp"
+                                android:layout_height="200dp"
+                                app:cardCornerRadius="12dp"
+                                app:cardElevation="4dp"
+                                android:layout_marginEnd="16dp">
+                                <ImageView
+                                    android:id="@+id/carouselImageView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/academic_image_3"
+                                    android:contentDescription="Academic Carousel Image 3"
+                                    android:tag="@drawable/academic_image_3" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:orientation="vertical"
+                                    android:padding="16dp"
+                                    android:background="#80000000">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Academic"
+                                        android:textColor="#ffffff"
+                                        android:textSize="12sp"
+                                        android:background="#00AA00"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:layout_marginBottom="4dp"/>
+                                    <TextView
+                                        android:id="@+id/carouselTitleTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Scholarship Opportunities"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"
+                                        android:maxLines="2"
+                                        android:ellipsize="end" />
+                                    <TextView
+                                        android:id="@+id/academicReadMore3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Read it more.."
+                                        android:textColor="#ffffff"
+                                        android:textSize="14sp"
+                                        android:layout_marginTop="8dp"
+                                        android:clickable="true"
+                                        android:focusable="true" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                        </LinearLayout>
+                    </HorizontalScrollView>
+                    <LinearLayout
+                        android:id="@+id/academicDotsLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="16dp">
+                        <View
+                            android:id="@+id/academic_dot1"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="@drawable/dot_active"
+                            android:layout_marginEnd="4dp" />
+                        <View
+                            android:id="@+id/academic_dot2"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="@drawable/dot_inactive"
+                            android:layout_marginEnd="4dp" />
+                        <View
+                            android:id="@+id/academic_dot3"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="@drawable/dot_inactive" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/sportContentSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+                    <HorizontalScrollView
+                        android:id="@+id/sportScrollView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="300dp"
+                                android:layout_height="200dp"
+                                app:cardCornerRadius="12dp"
+                                app:cardElevation="4dp"
+                                android:layout_marginEnd="16dp">
+                                <ImageView
+                                    android:id="@+id/carouselImageView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/sport_image_1"
+                                    android:contentDescription="Sport Carousel Image 1"
+                                    android:tag="@drawable/sport_image_1" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:orientation="vertical"
+                                    android:padding="16dp"
+                                    android:background="#80000000">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Sport"
+                                        android:textColor="#ffffff"
+                                        android:textSize="12sp"
+                                        android:background="#0000FF"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:layout_marginBottom="4dp"/>
+                                    <TextView
+                                        android:id="@+id/carouselTitleTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Inter-University Games Victory"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"
+                                        android:maxLines="2"
+                                        android:ellipsize="end" />
+                                    <TextView
+                                        android:id="@+id/sportReadMore1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Read it more.."
+                                        android:textColor="#ffffff"
+                                        android:textSize="14sp"
+                                        android:layout_marginTop="8dp"
+                                        android:clickable="true"
+                                        android:focusable="true" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="300dp"
+                                android:layout_height="200dp"
+                                app:cardCornerRadius="12dp"
+                                app:cardElevation="4dp"
+                                android:layout_marginEnd="16dp">
+                                <ImageView
+                                    android:id="@+id/carouselImageView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/sport_image_2"
+                                    android:contentDescription="Sport Carousel Image 2"
+                                    android:tag="@drawable/sport_image_2" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:orientation="vertical"
+                                    android:padding="16dp"
+                                    android:background="#80000000">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Sport"
+                                        android:textColor="#ffffff"
+                                        android:textSize="12sp"
+                                        android:background="#0000FF"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:layout_marginBottom="4dp"/>
+                                    <TextView
+                                        android:id="@+id/carouselTitleTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="New Sports Complex Opening"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"
+                                        android:maxLines="2"
+                                        android:ellipsize="end" />
+                                    <TextView
+                                        android:id="@+id/sportReadMore2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Read it more.."
+                                        android:textColor="#ffffff"
+                                        android:textSize="14sp"
+                                        android:layout_marginTop="8dp"
+                                        android:clickable="true"
+                                        android:focusable="true" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="300dp"
+                                android:layout_height="200dp"
+                                app:cardCornerRadius="12dp"
+                                app:cardElevation="4dp"
+                                android:layout_marginEnd="16dp">
+                                <ImageView
+                                    android:id="@+id/carouselImageView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/sport_image_3"
+                                    android:contentDescription="Sport Carousel Image 3"
+                                    android:tag="@drawable/sport_image_3" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:orientation="vertical"
+                                    android:padding="16dp"
+                                    android:background="#80000000">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Sport"
+                                        android:textColor="#ffffff"
+                                        android:textSize="12sp"
+                                        android:background="#0000FF"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:layout_marginBottom="4dp"/>
+                                    <TextView
+                                        android:id="@+id/carouselTitleTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Athlete Spotlight"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"
+                                        android:maxLines="2"
+                                        android:ellipsize="end" />
+                                    <TextView
+                                        android:id="@+id/sportReadMore3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Read it more.."
+                                        android:textColor="#ffffff"
+                                        android:textSize="14sp"
+                                        android:layout_marginTop="8dp"
+                                        android:clickable="true"
+                                        android:focusable="true" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                        </LinearLayout>
+                    </HorizontalScrollView>
+                    <LinearLayout
+                        android:id="@+id/sportDotsLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="16dp">
+                        <View
+                            android:id="@+id/sport_dot1"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="@drawable/dot_active"
+                            android:layout_marginEnd="4dp" />
+                        <View
+                            android:id="@+id/sport_dot2"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="@drawable/dot_inactive"
+                            android:layout_marginEnd="4dp" />
+                        <View
+                            android:id="@+id/sport_dot3"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="@drawable/dot_inactive" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/eventsContentSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+                    <HorizontalScrollView
+                        android:id="@+id/eventsScrollView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="300dp"
+                                android:layout_height="200dp"
+                                app:cardCornerRadius="12dp"
+                                app:cardElevation="4dp"
+                                android:layout_marginEnd="16dp">
+                                <ImageView
+                                    android:id="@+id/carouselImageView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/event_image_1"
+                                    android:contentDescription="Event Carousel Image 1"
+                                    android:tag="@drawable/event_image_1" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:orientation="vertical"
+                                    android:padding="16dp"
+                                    android:background="#80000000">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Event"
+                                        android:textColor="#ffffff"
+                                        android:textSize="12sp"
+                                        android:background="#FFA500"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:layout_marginBottom="4dp"/>
+                                    <TextView
+                                        android:id="@+id/carouselTitleTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Annual Cultural Festival"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"
+                                        android:maxLines="2"
+                                        android:ellipsize="end" />
+                                    <TextView
+                                        android:id="@+id/eventReadMore1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Read it more.."
+                                        android:textColor="#ffffff"
+                                        android:textSize="14sp"
+                                        android:layout_marginTop="8dp"
+                                        android:clickable="true"
+                                        android:focusable="true" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="300dp"
+                                android:layout_height="200dp"
+                                app:cardCornerRadius="12dp"
+                                app:cardElevation="4dp"
+                                android:layout_marginEnd="16dp">
+                                <ImageView
+                                    android:id="@+id/carouselImageView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/event_image_2"
+                                    android:contentDescription="Event Carousel Image 2"
+                                    android:tag="@drawable/event_image_2" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:orientation="vertical"
+                                    android:padding="16dp"
+                                    android:background="#80000000">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Event"
+                                        android:textColor="#ffffff"
+                                        android:textSize="12sp"
+                                        android:background="#FFA500"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:layout_marginBottom="4dp"/>
+                                    <TextView
+                                        android:id="@+id/carouselTitleTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Guest Lecture Series"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"
+                                        android:maxLines="2"
+                                        android:ellipsize="end" />
+                                    <TextView
+                                        android:id="@+id/eventReadMore2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Read it more.."
+                                        android:textColor="#ffffff"
+                                        android:textSize="14sp"
+                                        android:layout_marginTop="8dp"
+                                        android:clickable="true"
+                                        android:focusable="true" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="300dp"
+                                android:layout_height="200dp"
+                                app:cardCornerRadius="12dp"
+                                app:cardElevation="4dp"
+                                android:layout_marginEnd="16dp">
+                                <ImageView
+                                    android:id="@+id/carouselImageView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/event_image_3"
+                                    android:contentDescription="Event Carousel Image 3"
+                                    android:tag="@drawable/event_image_3" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:orientation="vertical"
+                                    android:padding="16dp"
+                                    android:background="#80000000">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Event"
+                                        android:textColor="#ffffff"
+                                        android:textSize="12sp"
+                                        android:background="#FFA500"
+                                        android:paddingStart="8dp"
+                                        android:paddingEnd="8dp"
+                                        android:paddingTop="4dp"
+                                        android:paddingBottom="4dp"
+                                        android:layout_marginBottom="4dp"/>
+                                    <TextView
+                                        android:id="@+id/carouselTitleTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Alumni Meetup Information"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"
+                                        android:maxLines="2"
+                                        android:ellipsize="end" />
+                                    <TextView
+                                        android:id="@+id/eventReadMore3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Read it more.."
+                                        android:textColor="#ffffff"
+                                        android:textSize="14sp"
+                                        android:layout_marginTop="8dp"
+                                        android:clickable="true"
+                                        android:focusable="true" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                        </LinearLayout>
+                    </HorizontalScrollView>
+                    <LinearLayout
+                        android:id="@+id/eventsDotsLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="16dp">
+                        <View
+                            android:id="@+id/event_dot1"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="@drawable/dot_active"
+                            android:layout_marginEnd="4dp" />
+                        <View
+                            android:id="@+id/event_dot2"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="@drawable/dot_inactive"
+                            android:layout_marginEnd="4dp" />
+                        <View
+                            android:id="@+id/event_dot3"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="@drawable/dot_inactive" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recommended"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/carouselImageView"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/recommended_image_1"
+                        android:layout_marginEnd="12dp"
+                        android:contentDescription="Recommended Image 1"
+                        android:tag="@drawable/recommended_image_1" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/carouselTitleTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily=""
+                            android:text="Opening ceremony of the Hydrotherapy and Recovery Room of the Center for Sport and ...."
+                            android:textColor="#000000"
+                            android:textSize="14sp"
+                            android:maxLines="3"
+                            android:ellipsize="end"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:id="@+id/recommendedReadMore1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Read it more.."
+                            android:textColor="#104271"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="4dp"
+                            android:clickable="true"
+                            android:focusable="true" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Posted on 3 minute ago"
+                            android:textColor="#888888"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/carouselImageView"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/recommended_image_2"
+                        android:layout_marginEnd="12dp"
+                        android:contentDescription="Recommended Image 2"
+                        android:tag="@drawable/recommended_image_2" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/carouselTitleTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily=""
+                            android:text="Professor Priyani Amarathunga, the Head of the Department of Pathology and the Director of the Centre for Diagnosis and Research in Cancer, Faculty of Medicine was inducted as the President of the College of Pathologists of Sri Lanka on 12th March 2025 at a function held at Monarch Imperial Hotel, Sri Jayawardenapura. The College of Pathologists of Sri Lanka, established in 1975 celebrates its 50th anniversary this year under the theme of commemorating the past, excelling in the present and aspiring for the future."
+                            android:textColor="#000000"
+                            android:textSize="14sp"
+                            android:maxLines="3"
+                            android:ellipsize="end"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:id="@+id/recommendedReadMore2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Read it more.."
+                            android:textColor="#104271"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="4dp"
+                            android:clickable="true"
+                            android:focusable="true" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Posted on 6 minute ago"
+                            android:textColor="#888888"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/carouselImageView"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/recommended_image_3"
+                        android:layout_marginEnd="12dp"
+                        android:contentDescription="Recommended Image 3"
+                        android:tag="@drawable/recommended_image_3" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/carouselTitleTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily=""
+                            android:text="The Faculty of Education celebrates its Golden Jubilee in 2025, marking 50 years of excellence in fostering teacher professionalism and shaping the future of education in Sri Lanka. To kick off this historic year, a multi-religious blessing ceremony was held on 1st January 2025 at the Faculty. The ceremony was presided over by Senior Professor (Chair) H D Karunaratne, the Vice Chancellor of the University. This momentous occasion was just the beginning of a yearlong celebration, with an exciting calendar of events planned throughout 2025."
+                            android:textColor="#000000"
+                            android:textSize="14sp"
+                            android:maxLines="3"
+                            android:ellipsize="end"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:id="@+id/recommendedReadMore3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Read it more.."
+                            android:textColor="#104271"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="4dp"
+                            android:clickable="true"
+                            android:focusable="true" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Posted on 6 minute ago"
+                            android:textColor="#888888"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/carouselImageView"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/recommended_image_4"
+                        android:layout_marginEnd="12dp"
+                        android:contentDescription="Recommended Image 4"
+                        android:tag="@drawable/recommended_image_4" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/carouselTitleTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily=""
+                            android:text="Distinguished guests who attended the function included, Emeritus Professor Neelakanthi Ratnatunga, University of Peradeniya, the Chief Guest, Emeritus Professor Chandu de Silva, the Guest Speaker, Professor Vidya Jothi Vajira Dissanayake, the Dean of the Faculty of Medicine, Emeritus Professor Jennifer Perera, former Dean of the Faculty of Medicine, Emeritus Professor L R Amarasekera and Emeritus Professor Saroj Jayasinghe. Professor Chandu de Silva delivered the 50th Anniversary Lecture on “The Final Diagnosis: A 50-year Odyssey” highlighting the important events in the 50 years’ journey of the College of Pathologists of Sri Lanka. The vote of thanks was delivered by the Honorary Secretary Dr Lalani J De Silva."
+                            android:textColor="#000000"
+                            android:textSize="14sp"
+                            android:maxLines="3"
+                            android:ellipsize="end"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:id="@+id/recommendedReadMore4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Read it more.."
+                            android:textColor="#104271"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="4dp"
+                            android:clickable="true"
+                            android:focusable="true" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Posted on 6 minute ago"
+                            android:textColor="#888888"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottomNavBar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#ffffff"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="Home"
+                android:src="@drawable/ic_home_active" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textColor="#104271"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="Discover"
+                android:src="@drawable/ic_discover" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Discover"
+                android:textColor="#888888"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="Saved"
+                android:src="@drawable/ic_saved" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saved"
+                android:textColor="#888888"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/profileTabLinearLayout"  android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"   android:focusable="true"   android:background="?attr/selectableItemBackgroundBorderless">
+
+            <ImageView
+                android:id="@+id/profileIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="Profile"
+                android:src="@drawable/ic_profile" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:textColor="#888888"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menuOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/menuContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:elevation="8dp"
+            app:cardCornerRadius="8dp">
+            <TextView
+                android:id="@+id/menuItem1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:padding="12dp"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground" />
+
+            <TextView
+                android:id="@+id/menuItem2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Settings"
+                android:padding="12dp"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground" />
+
+            <TextView
+                android:id="@+id/menuItem3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="About"
+                android:padding="12dp"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground" />
+
+            <TextView
+                android:id="@+id/menuItem4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:padding="12dp"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
